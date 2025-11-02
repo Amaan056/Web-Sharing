@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebRTC File Transfer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>WebRTC File Transfer</h1>
+
+        <div id="connection-status" class="status-indicator">Disconnected</div>
+
+        <div class="controls">
+            <button id="connect-button">Connect</button>
+            <button id="disconnect-button" disabled>Disconnect</button>
+        </div>
+
+        <div class="data-transfer">
+            <div class="file-transfer">
+                <h2>File Transfer</h2>
+                <div id="drop-area" class="drop-area">
+                    Drag & Drop Files Here
+                </div>
+                <input type="file" id="file-input" multiple style="display: none;">
+                <button id="send-file-button" disabled>Send File</button>
+                <div id="file-progress-container" class="progress-container">
+                    <div id="file-progress-bar" class="progress-bar"></div>
+                    <span id="file-progress-text" class="progress-text"></span>
+                </div>
+                <div id="received-files">
+                    <h3>Received Files:</h3>
+                    <ul id="received-files-list"></ul>
+                </div>
+            </div>
+
+            <div class="text-transfer">
+                <h2>Text Transfer</h2>
+                <textarea id="message-input" placeholder="Type your message here..."></textarea>
+                <button id="send-message-button" disabled>Send Message</button>
+                <div id="received-messages">
+                    <h3>Received Messages:</h3>
+                    <ul id="received-messages-list"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered: ', registration);
+                    })
+                    .catch(error => {
+                        console.error('Service Worker registration failed: ', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
