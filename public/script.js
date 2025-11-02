@@ -48,7 +48,8 @@ function updateConnectionStatus(status, isConnected) {
 }
 
 function setupSignalingChannel() {
-    signalingChannel = new WebSocket(`ws://${window.location.hostname}:8080`);
+    const protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+    signalingChannel = new WebSocket(`${protocol}://${location.host}`);
 
     signalingChannel.onopen = () => {
         console.log('Signaling channel connected');

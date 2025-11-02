@@ -2,14 +2,15 @@
   "name": "webrtc-file-transfer",
   "version": "1.0.0",
   "description": "WebRTC-based file and data transfer web app",
-  "main": "server/signaling-server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node server/signaling-server.js"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.21.2",
     "ws": "^8.16.0"
   }
 }
